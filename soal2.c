@@ -47,7 +47,7 @@ int main(){
 
     scanf("%d", &node);
 
-    int chain[max_node][max_node] = {0};
+    int chain[max_quest][max_quest] = {0};
 
     scanf("%d", &edge);
 
