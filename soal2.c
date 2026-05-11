@@ -45,7 +45,7 @@ int loopkah(int chain[max_quest][max_quest], int node){
 int main(){
     int node, edge;
 
-    scanf("%d", &node)
+    scanf("%d", &node);
 
     int chain[max_node][max_node] = {0};
 
