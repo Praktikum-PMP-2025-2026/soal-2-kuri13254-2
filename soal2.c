@@ -1,78 +1,67 @@
+/*
+Nama            : Thoriq Al Maududi
+NIM             : 13224054
+Pilihan soal    : Soal 2
+*/
+
 #include <stdio.h>
 #include <stdlib.h>
 
-#define MAX_VERTICES 100
+#define max_quest 20
 
-// Function to add an edge to the graph
-void addEdge(int graph[MAX_VERTICES][MAX_VERTICES], int start, int end) {
-    graph[start][end] = 1;
-    graph[end][start] = 1; // For undirected graph
+void chainquest(int chain[max_quest][max_quest], int prasyarat, int quest){
+    chain[quest][prasyarat] = 1;
 }
 
-// Recursive function to perform DFS and check for cycles
-int isCyclicUtil(int graph[MAX_VERTICES][MAX_VERTICES], int currentVertex, int parent, int visited[MAX_VERTICES]) {
-    visited[currentVertex] = 1;
-
-    for (int i = 0; i < MAX_VERTICES; i++) {
-        if (graph[currentVertex][i]) {
-            if (!visited[i]) {
-                if (isCyclicUtil(graph, i, currentVertex, visited))
-                    return 1;
-            } else if (i != parent) {
+int isCyclicUtil(int chain[max_quest][max_quest], int currentquest, int parent, int visited[max_quest]){
+    visited[currentquest] = 1;
+    
+    for(int i = 0; i < max_quest; i++){
+        if (chain[currentquest][i]){
+            if (!visited[i]){
+                if (isCyclicUtil(chain, i, currentquest, visited))
+                return 1;
+            }
+            else if (i != parent){
                 return 1;
             }
         }
     }
-
     return 0;
 }
 
-// Function to check whether a graph contains a cycle
-int isCyclic(int graph[MAX_VERTICES][MAX_VERTICES], int vertices) {
-    int visited[MAX_VERTICES] = {0};
+int loopkah(int chain[max_quest][max_quest], int node){
+    int visited[max_quest] = {0};
 
-    for (int i = 0; i < vertices; i++) {
-        if (!visited[i]) {
-            if (isCyclicUtil(graph, i, -1, visited))
-                return 1;
+    for(int i = 0; i < node; i++){
+        if(!visited[i]){
+            if (isCyclicUtil(chain, i, -1, visited))
+            return 1;
         }
     }
-
     return 0;
 }
 
-int main() {
-    int vertices, edges;
+int main(){
+    int node, edge;
 
-    // Input the number of vertices
-    scanf("%d", &vertices);
+    scanf("%d", &node);
 
-    int graph[MAX_VERTICES][MAX_VERTICES] = {0}; // Initialize the adjacency matrix with zeros
+    int chain[max_quest][max_quest] = {0};
 
-    // Input the number of edges
-    scanf("%d", &edges);
+    scanf("%d", &edge);
 
-    // Input edges and construct the adjacency matrix
-    for (int i = 0; i < edges; i++) {
-        int start, end;
-        printf("Input edge %d (start end): ", i + 1);
-        scanf("%d %d", &start, &end);
-
-        // Validate input vertices
-        if (start < 0 || start >= vertices || end < 0 || end >= vertices) {
-            printf("Invalid vertices. Try again.\n");
-            i--;
-            continue;
-        }
-
-        addEdge(graph, start, end);
+    for (int i = 0; i < edge; i++){
+        int prasyarat, quest;
+        scanf("%d %d", &quest, &prasyarat);
+    
+    chainquest(chain, prasyarat, quest);
     }
 
-    // Check if the graph contains a cycle
-    if (isCyclic(graph, vertices))
+    if (loopkah(chain, node))
         printf("TIDAK BISA");
     else
         printf("BISA");
-
+    
     return 0;
 }
