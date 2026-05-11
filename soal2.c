@@ -46,18 +46,10 @@ int main(){
     int node, edge;
 
     scanf("%d", &node);
-    
-    if (node <= 0 || node > max_quest){
-        return 1;
-    }
 
     int chain[max_quest][max_quest] = {0};
 
     scanf("%d", &edge);
-
-    if (edges < 0 || edges > vertices * (vertices - 1) / 2) {
-        return 1;
-    }
 
     for (int i = 0; i < edge; i++){
         int prasyarat, quest;
