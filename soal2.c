@@ -45,24 +45,12 @@ int main() {
     int vertices, edges;
 
     // Input the number of vertices
-    printf("Input the number of vertices: ");
     scanf("%d", &vertices);
-
-    if (vertices <= 0 || vertices > MAX_VERTICES) {
-        printf("Invalid number of vertices. Exiting...\n");
-        return 1;
-    }
 
     int graph[MAX_VERTICES][MAX_VERTICES] = {0}; // Initialize the adjacency matrix with zeros
 
     // Input the number of edges
-    printf("Input the number of edges: ");
     scanf("%d", &edges);
-
-    if (edges < 0 || edges > vertices * (vertices - 1) / 2) {
-        printf("Invalid number of edges. Exiting...\n");
-        return 1;
-    }
 
     // Input edges and construct the adjacency matrix
     for (int i = 0; i < edges; i++) {
