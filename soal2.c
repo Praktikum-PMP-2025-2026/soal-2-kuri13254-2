@@ -59,9 +59,9 @@ int main(){
     }
 
     if (loopkah(chain, node))
-        printf("TIDAK BISA\n");
+        printf("TIDAK BISA");
     else
-        printf("BISA\n");
+        printf("BISA");
     
     return 0;
 }
